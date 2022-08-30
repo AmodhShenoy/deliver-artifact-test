@@ -6,6 +6,18 @@ shell: bash
 steps:
   - type: Command
     timeoutInSeconds: 600
+    name: "Building HelloWorld"
+    command: |
+      cd src/main/java/org/example/
+      javac HelloWorld.java
+    onFailure:
+      - type: Command
+        command: |
+          echo "Building HelloWorld failed :("
+        timeoutInSeconds: 400
+        runAs: root
+  - type: Command
+    timeoutInSeconds: 600
     name: "Create Docker Artifact"
     command: |
       docker build -t hello-test:1.0 .
