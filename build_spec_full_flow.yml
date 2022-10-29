@@ -7,10 +7,9 @@ failImmediatelyOnError: true
 steps:
   - type: Command
     name: "Test fail"
-    onFailure:
+    command: |
+      exit 1
     onFailure:
       - type: Command
         command: |
           echo "RUNNING ON FAILURE"
-        command: |
-          exit 1
